@@ -22,10 +22,16 @@
 *.a
 *.lib
 
+
 # Executables
 *.exe
 *.out
 *.app
+
+#VS solution
+*.db
+*.ilk
+*.pdb
 
 # =========================
 # Operating System Files
