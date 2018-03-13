@@ -1,0 +1,90 @@
+calibration result for image 1:
+Rotation matrix: 
+    0.969379 -0.107986 0.220554
+    -0.0630948 -0.977499 -0.201283
+    0.237327 0.181204 -0.95438
+Euler Angle X,Y,Z for cv(right-hand system):0.202668, 2.91448, -0.0644577
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.202668, 0.22711, -0.0644577
+translation for cv camera: -103.83, 50.7869, 335.168
+translation for noise3d camera: -103.83, 50.7869, -335.168
+
+calibration result for image 2:
+Rotation matrix: 
+    0.998799 -0.0254507 -0.0418736
+    -0.032938 -0.981391 -0.189172
+    -0.0362798 0.190324 -0.981051
+Euler Angle X,Y,Z for cv(right-hand system):0.190319, -3.09894, -0.0335499
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.190319, 6.24053, -0.0335499
+translation for cv camera: 21.206, 64.9422, 353.63
+translation for noise3d camera: 21.206, 64.9422, -353.63
+
+calibration result for image 3:
+Rotation matrix: 
+    0.934586 0.0500623 -0.352196
+    -0.00710043 -0.987226 -0.159169
+    -0.355666 0.151258 -0.922292
+Euler Angle X,Y,Z for cv(right-hand system):0.159849, -2.77681, -0.00719218
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.159849, 5.9184, -0.00719218
+translation for cv camera: 129.929, 74.4243, 303.788
+translation for noise3d camera: 129.929, 74.4243, -303.788
+
+calibration result for image 4:
+Rotation matrix: 
+    0.990742 0.0258328 -0.133279
+    -0.0116127 -0.962005 -0.272785
+    -0.135262 0.271807 -0.952799
+Euler Angle X,Y,Z for cv(right-hand system):0.276287, -3.00261, -0.0120707
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.276287, 6.14421, -0.0120707
+translation for cv camera: 38.5642, 135.426, 302.964
+translation for noise3d camera: 38.5642, 135.426, -302.964
+
+calibration result for image 5:
+Rotation matrix: 
+    0.86851 -0.495291 -0.019416
+    -0.490363 -0.852831 -0.179509
+    0.0723505 0.165426 -0.983565
+Euler Angle X,Y,Z for cv(right-hand system):0.180487, -3.12185, -0.521821
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.180487, 6.26345, -0.521821
+translation for cv camera: -21.4182, 68.8494, 332.617
+translation for noise3d camera: -21.4182, 68.8494, -332.617
+
+calibration result for image 6:
+Rotation matrix: 
+    0.852217 0.519525 0.0618106
+    0.520229 -0.828912 -0.20559
+    -0.0555737 0.207363 -0.976684
+Euler Angle X,Y,Z for cv(right-hand system):0.207067, 3.07839, 0.56047
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.207067, 0.0632019, 0.56047
+translation for cv camera: -17.9166, 77.3371, 357.203
+translation for noise3d camera: -17.9166, 77.3371, -357.203
+
+calibration result for image 7:
+Rotation matrix: 
+    0.999978 0.000805409 0.00659172
+    0.00131904 -0.99693 -0.078291
+    0.00650843 0.078298 -0.996909
+Euler Angle X,Y,Z for cv(right-hand system):0.0783712, 3.13498, 0.0013231
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.0783712, 0.00661207, 0.0013231
+translation for cv camera: 0.06097, 2.51614, 209.906
+translation for noise3d camera: 0.06097, 2.51614, -209.906
+
+calibration result for image 8:
+Rotation matrix: 
+    0.999786 0.0192203 0.00758915
+    0.0196364 -0.769264 -0.638629
+    -0.0064366 0.638641 -0.769478
+Euler Angle X,Y,Z for cv(right-hand system):0.692715, 3.13173, 0.0255206
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.692715, 0.00986241, 0.0255206
+translation for cv camera: 2.86963, 137.022, 227.278
+translation for noise3d camera: 2.86963, 137.022, -227.278
+
+calibration result for image 9:
+Rotation matrix: 
+    0.644804 -0.104458 0.757177
+    -0.0173461 -0.992362 -0.122132
+    0.764151 0.0656171 -0.641691
+Euler Angle X,Y,Z for cv(right-hand system):0.122438, 2.27382, -0.0174778
+Euler Angle X,Y,Z for Noise3D (left-hand system):0.122438, 0.867768, -0.0174778
+translation for cv camera: -203.681, 13.3611, 172.219
+translation for noise3d camera: -203.681, 13.3611, -172.219
+
