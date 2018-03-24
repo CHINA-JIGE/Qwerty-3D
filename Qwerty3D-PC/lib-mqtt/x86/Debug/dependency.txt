@@ -1,0 +1,3 @@
+paho.mqtt.cpp-master :	OBJS.lib
+paho.mqtt.cpp-master :	paho-mqttpp3.lib
+paho.mqtt.c-master :	paho-mqtt3a.lib

@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{989DEC98-69C7-4F44-AEFC-D5D4BBF57B90}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Noise3D</RootNamespace>
+    <ProjectName>Noise3d</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)ExternalInclude\;$(SolutionDir)Source\Noise3D\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ExternalLib\FBXSDK\lib\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)ExternalLib\FreeType\lib\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)ExternalLib\Effects11\lib\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)ExternalLib\DirectXTex\lib\$(PlatformTarget)\$(Configuration)\;$(DXSDK_DIR)Lib\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <OutDir>$(SolutionDir)Lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(Configuration)_$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(SolutionDir)ExternalLib\FBXSDK\lib\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)ExternalLib\FreeType\lib\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)ExternalLib\Effects11\lib\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)ExternalLib\DirectXTex\lib\$(PlatformTarget)\$(Configuration)\;$(DXSDK_DIR)Lib\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ExternalInclude\;$(SolutionDir)Source\Noise3D\;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(Configuration)_$(ProjectName)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>Noise3D.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)pch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11.lib;d3dx10.lib;dxgi.lib;Effects11.lib;dxerr.lib;dxguid.lib;dinput8.lib;freetype261.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11.lib;d3dx10.lib;dxgi.lib;Effects11d.lib;dxerr.lib;dxguid.lib;dinput8.lib;freetype261.lib;user32.lib;libfbxsdk-md.lib;DirectXTex_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <ResourceCompile>
+      <ShowProgress>true</ShowProgress>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>Noise3D.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(SolutionDir)pch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11.lib;d3dx10.lib;dxgi.lib;Effects11.lib;dxerr.lib;dxguid.lib;dinput8.lib;freetype261.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;d3dx11.lib;d3dx10.lib;dxgi.lib;dxerr.lib;dxguid.lib;dinput8.lib;freetype261.lib;Effects11.lib;user32.lib;libfbxsdk-md.lib;DirectXTex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CollisionTestor.h" />
+    <ClInclude Include="Renderer_Atmosphere.h" />
+    <ClInclude Include="Renderer_GraphicObj.h" />
+    <ClInclude Include="Renderer_Mesh.h" />
+    <ClInclude Include="Renderer_Text.h" />
+    <ClInclude Include="RenderInfrastructure.h" />
+    <ClInclude Include="Renderer_PostProcessing.h" />
+    <ClInclude Include="_BaseRenderModule.h" />
+    <ClInclude Include="_FbxLoader.h" />
+    <ClInclude Include="FileIO_OBJ.h" />
+    <ClInclude Include="FileIO_STL.h" />
+    <ClInclude Include="GraphicObjMgr.h" />
+    <ClInclude Include="ShaderVarManager.h" />
+    <ClInclude Include="Ut_MCMeshReconstructor.h" />
+    <ClInclude Include="ModelProcessor.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Lights.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="IFactory.h" />
+    <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="Text_2DBasicTextInfo.h" />
+    <ClInclude Include="Text_FontManager.h" />
+    <ClInclude Include="Text_TextDynamic.h" />
+    <ClInclude Include="Text_TextStatic.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Root.h" />
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="FileIO_3DS.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Ut_VoxelizedModel.h" />
+    <ClInclude Include="Ut_Voxelizer.h" />
+    <ClInclude Include="_GeometryMeshGenerator.h" />
+    <ClInclude Include="Ut_InputEngine.h" />
+    <ClInclude Include="LightManager.h" />
+    <ClInclude Include="GraphicObject.h" />
+    <ClInclude Include="MaterialManager.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Noise3D.h" />
+    <ClInclude Include="Atmosphere.h" />
+    <ClInclude Include="NoiseGlobal.h" />
+    <ClInclude Include="NoiseMacro.h" />
+    <ClInclude Include="NoiseTypes.h" />
+    <ClInclude Include="Ut_InputEngine_KeyDef.h" />
+    <ClInclude Include="Ut_MeshSlicer.h" />
+    <ClInclude Include="Ut_Timer.h" />
+    <ClInclude Include="_2DBasicContainerInfo.h" />
+    <ClInclude Include="_BasicRenderSettings.h" />
+    <ClInclude Include="_SpatialHashTable.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CollisionTestor.cpp" />
+    <ClCompile Include="Renderer_PostProcessing.cpp" />
+    <ClCompile Include="RenderInfrastructure.cpp" />
+    <ClCompile Include="_FbxLoader.cpp" />
+    <ClCompile Include="ShaderVarManager.cpp" />
+    <ClCompile Include="Ut_MCMeshReconstructor.cpp" />
+    <ClCompile Include="ModelProcessor.cpp" />
+    <ClCompile Include="pchGen.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Noise3D.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)pch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)pch\$(Configuration)\$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="GraphicObjMgr.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Lights.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MeshManager.cpp" />
+    <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="Text_FontManager.cpp" />
+    <ClCompile Include="Text_TextDynamic.cpp" />
+    <ClCompile Include="Text_TextStatic.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Root.cpp" />
+    <ClCompile Include="Renderer_Atmosphere.cpp" />
+    <ClCompile Include="Renderer_GraphicObj.cpp" />
+    <ClCompile Include="Renderer_Mesh.cpp" />
+    <ClCompile Include="Renderer_Text.cpp" />
+    <ClCompile Include="Ut_VoxelizedModel.cpp" />
+    <ClCompile Include="_2DBasicContainerInfo.cpp" />
+    <ClCompile Include="Text_2DBasicTextInfo.cpp" />
+    <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="FileIO_3DS.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="FileIO_OBJ.cpp" />
+    <ClCompile Include="FileIO_STL.cpp" />
+    <ClCompile Include="_GeometryMeshGenerator.cpp" />
+    <ClCompile Include="Ut_InputEngine.cpp" />
+    <ClCompile Include="LightManager.cpp" />
+    <ClCompile Include="GraphicObject.cpp" />
+    <ClCompile Include="MaterialManager.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Atmosphere.cpp" />
+    <ClCompile Include="NoiseGlobal.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Ut_MeshSlicer.cpp" />
+    <ClCompile Include="Ut_Timer.cpp" />
+    <ClCompile Include="_SpatialHashTable.cpp" />
+    <ClCompile Include="Ut_Voxelizer.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
