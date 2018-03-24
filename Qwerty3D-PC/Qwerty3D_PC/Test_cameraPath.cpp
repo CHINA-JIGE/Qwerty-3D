@@ -4,7 +4,7 @@
 Qwerty::RenderModule renderModule;
 Qwerty::NetworkModule networkModule(
 	"tcp://39.108.118.166:1883", 
-	"WindyIceXXX",
+	"JigeSend",
 	"WindyIce_linearAcc");
 void Mainloop();
 
@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 {
 	renderModule.Init3D(hInstance,Mainloop);
 
-	bool isConnected =networkModule.InitConnection();
+	bool isConnected =networkModule.Connect();
 
 	//enter main loop
 	renderModule.EnterMainLoop();

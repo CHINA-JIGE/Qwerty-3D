@@ -8,24 +8,31 @@
 
 //--------------Network Transimission module based on MQTT protocol-------------------
 
-Qwerty::NetworkModule::NetworkModule(std::string serverAddr, std::string clientId, std::string topic):
-	mServerAddress(serverAddr),//"tcp://39.108.118.166:1883"
-	mClientId(clientId),//"WindyIceXXX"
-	mClient(serverAddr,clientId),
-	mMqttListener(topic,mClient,mConnectionOpt)
+Qwerty::NetworkModule::NetworkModule()
 {
 }
 
-bool Qwerty::NetworkModule::InitConnection()
+bool Qwerty::NetworkModule::Init(std::string serverAddr, std::string clientId, std::string topic)
 {
-	mConnectionOpt.set_keep_alive_interval(20);
-	mConnectionOpt.set_clean_session(true);
-	mClient.set_callback(mMqttListener);
+	mServerAddress = serverAddr;
+	mClientId = clientId;
+	mTopic = topic;
+	m_pClient = new mqtt::async_client(serverAddr, clientId);
+	m_pConnectionOpt = new mqtt::connect_options();
+	//pass the reference of mqtt::async_client and mqtt::connectionOpt to init listener
+	return mMqttListener.Init(mTopic,m_pClient,m_pConnectionOpt);
+}
+
+bool Qwerty::NetworkModule::Connect()
+{
+	m_pConnectionOpt->set_keep_alive_interval(20);
+	m_pConnectionOpt->set_clean_session(true);
+	m_pClient->set_callback(mMqttListener);
 
 	// Start the connection.
 	// When completed, the callback will subscribe to topic.
 	try {
-		mClient.connect(mConnectionOpt, nullptr, mMqttListener);
+		m_pClient->connect(*m_pConnectionOpt, nullptr, mMqttListener);
 	}
 	catch (const mqtt::exception&) {
 		//unable to connect to MQTT server
@@ -35,11 +42,16 @@ bool Qwerty::NetworkModule::InitConnection()
 	return true;
 }
 
+void Qwerty::NetworkModule::Send(std::string s)
+{
+	m_pClient->publish(mTopic,&s.at(0), s.size());
+}
+
 bool Qwerty::NetworkModule::Disconnect()
 {
 	try {
 		//Disconnecting
-		mClient.disconnect()->wait();
+		m_pClient->disconnect()->wait();
 		std::cout << "OK" << std::endl;
 	}
 	catch (const mqtt::exception& exc) {
@@ -54,13 +66,31 @@ bool Qwerty::NetworkModule::Disconnect()
 
 //----------------------Listener for messages---------------------
 
-Qwerty::Listener::Listener(std::string topicToSubsribe,mqtt::async_client& cli, mqtt::connect_options& connOpts)
+/*Qwerty::Listener::Listener(std::string topicToSubsribe,mqtt::async_client& cli, mqtt::connect_options& connOpts)
 	: mConnectionRetryCount(0), 
-	mRefClient(cli), 
-	mRefConnectionOpt(connOpts), 
+	m_pRefClient(cli), 
+	m_pRefConnectionOpt(connOpts), 
 	mSubListener("Subscription"),
 	mTopicToSubscribe(topicToSubsribe)
 {
+}*/
+
+Qwerty::Listener::Listener()
+	: mConnectionRetryCount(0),
+	m_pRefClient(nullptr),
+	m_pRefConnectionOpt(nullptr),
+	mTopicToSubscribe(""),
+	mSubListener("Subscription")
+{
+}
+
+bool Qwerty::Listener::Init(std::string topicToSubsribe, mqtt::async_client* pCli, mqtt::connect_options* pConnOpts)
+{
+	mTopicToSubscribe = topicToSubsribe;
+	m_pRefClient = pCli;
+	m_pRefConnectionOpt = pConnOpts;
+
+	return true;
 }
 
 void Qwerty::Listener::mFunction_Reconnect()
@@ -73,7 +103,7 @@ void Qwerty::Listener::mFunction_Reconnect()
 	// to just call the async_client::reconnect() method.
 	std::this_thread::sleep_for(std::chrono::milliseconds(2500));
 	try {
-		mRefClient.connect(mRefConnectionOpt, nullptr, *this);
+		m_pRefClient->connect(*m_pRefConnectionOpt, nullptr, *this);
 	}
 	catch (const mqtt::exception& exc) {
 		//reconnection error
@@ -97,7 +127,7 @@ void Qwerty::Listener::on_success(const mqtt::token & tok)
 		<< " using QoS" << cQOS << "\n"
 		<< "\nPress Q<Enter> to quit\n" << std::endl;*/
 
-	mRefClient.subscribe(mTopicToSubscribe, cQOS, nullptr, mSubListener);
+	m_pRefClient->subscribe(mTopicToSubscribe, cQOS, nullptr, mSubListener);
 }
 
 void Qwerty::Listener::connection_lost(const std::string & cause)
@@ -111,9 +141,9 @@ void Qwerty::Listener::connection_lost(const std::string & cause)
 
 void Qwerty::Listener::message_arrived(mqtt::const_message_ptr msg)
 {
-	/*std::cout << "Message arrived" << std::endl;
+	std::cout << "Message arrived" << std::endl;
 	std::cout << "\ttopic: '" << msg->get_topic() << "'" << std::endl;
-	std::cout << "\tpayload: '" << msg->to_string() << "'\n" << std::endl;*/
+	std::cout << "\tpayload: '" << msg->to_string() << "'\n" << std::endl;
 }
 
 void Qwerty::Listener::delivery_complete(mqtt::delivery_token_ptr token)

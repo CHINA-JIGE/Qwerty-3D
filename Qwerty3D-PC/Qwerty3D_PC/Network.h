@@ -23,13 +23,16 @@ namespace Qwerty
 
 
 
+
 	//Listener for message/IO arrival
 	//(CallBack functions)
 	class Listener : public virtual mqtt::callback,
 		public virtual mqtt::iaction_listener
 	{
 	public:
-		Listener(std::string topicToSubsribe,mqtt::async_client& cli, mqtt::connect_options& connOpts);
+		Listener();
+
+		bool Init(std::string topicToSubsribe, mqtt::async_client* pCli, mqtt::connect_options* pConnOpts);
 
 	private:
 
@@ -37,9 +40,9 @@ namespace Qwerty
 
 		static const int	cRetryAttemptCount = 5;
 
-		mqtt::async_client&	 mRefClient;		//reference to MQTT client
+		mqtt::async_client*	 m_pRefClient;		//reference to MQTT client
 
-		mqtt::connect_options& mRefConnectionOpt; //reference to connection options
+		mqtt::connect_options* m_pRefConnectionOpt; //reference to connection options
 
 		SubActionListener	 mSubListener;		// An action listener to display the result of actions.
 
@@ -70,30 +73,36 @@ namespace Qwerty
 
 
 
+
 	//Network Transimission module based on MQTT protocol
 	class NetworkModule
 	{
 	public:
 
-		NetworkModule(std::string serverAddr, std::string clientId, std::string topic);
+		NetworkModule();
 
-		bool InitConnection();
+		bool Init(std::string serverAddr, std::string clientId, std::string topic);
+
+		bool Connect();
+
+		void	Send(std::string s);
 
 		bool Disconnect();
 
 	private:
 
-		Listener mMqttListener; //listener to messages (callback functions)
+		Listener mMqttListener; //listener to messages/receiver (callback functions)
 
-		mqtt::connect_options mConnectionOpt;// Options to use if we need to reconnect
+		mqtt::connect_options* m_pConnectionOpt;// Options to use if we need to reconnect
 
-		mqtt::async_client mClient;
+		mqtt::async_client* m_pClient;
 
 		std::string mServerAddress;
 
 		std::string mClientId;
-	};
 
+		std::string mTopic;
+	};
 
 
 }
