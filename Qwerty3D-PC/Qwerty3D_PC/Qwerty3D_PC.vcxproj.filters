@@ -15,27 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Render.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Network.cpp">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Test_cameraPath.cpp">
-      <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="Test_Network.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_WaitForConnection.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_QwertyRendering.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_DebuggingCamPath.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_CameraCalibration.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MainApp.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Render.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Network.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Qwerty3D-PC.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_WaitForConnection.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_CameraCalibration.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_QwertyRendering.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_DebuggingCamPath.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="MainApp.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

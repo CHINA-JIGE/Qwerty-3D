@@ -126,20 +126,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Network.cpp" />
-    <ClCompile Include="Render.cpp" />
-    <ClCompile Include="Test_cameraPath.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Test_Network.cpp">
+    <ClCompile Include="MainApp.cpp" />
+    <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene_CameraCalibration.cpp" />
+    <ClCompile Include="Scene_DebuggingCamPath.cpp" />
+    <ClCompile Include="Scene_QwertyRendering.cpp" />
+    <ClCompile Include="Scene_WaitForConnection.cpp" />
+    <ClCompile Include="Test_Network.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network.h" />
     <ClInclude Include="Qwerty3D-PC.h" />
-    <ClInclude Include="Render.h" />
+    <ClInclude Include="MainApp.h" />
+    <ClInclude Include="Scene_CameraCalibration.h" />
+    <ClInclude Include="Scene_DebuggingCamPath.h" />
+    <ClInclude Include="Scene_QwertyRendering.h" />
+    <ClInclude Include="Scene_WaitForConnection.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
