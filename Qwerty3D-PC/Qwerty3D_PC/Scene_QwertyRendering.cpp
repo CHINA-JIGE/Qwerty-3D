@@ -10,15 +10,21 @@ using namespace Noise3D;
 
 void Qwerty::Scene_MainQwerty3dRendering::Init(Noise3D::IScene * pScene)
 {
-	//diffuse map
-	m_pTexMgr->CreateTextureFromFile("../../../media/Earth.jpg", "Earth", true, 1024, 1024, false);
-	m_pTexMgr->CreateTextureFromFile("../../../model/qwerty/arc18_filtered.PNG", "brick", false, 256, 256, false);
-	m_pTexMgr->CreateTextureFromFile("../../../media/sky.jpg", "Universe", false, 256, 256, false);
+	m_pRenderer = pScene->GetRenderer();
+	m_pCamera = pScene->GetCamera();
+	m_pAtmos = pScene->GetAtmosphere();
+	m_pModelLoader = pScene->GetModelLoader();
+	m_pMeshMgr = pScene->GetMeshMgr();
+	m_pMatMgr = pScene->GetMaterialMgr();
+	m_pTexMgr = pScene->GetTextureMgr();
+	m_pLightMgr = pScene->GetLightMgr();
 
+	//diffuse map
+	m_pTexMgr->CreateTextureFromFile("media/sky.jpg", "Universe", false, 256, 256, false);
 	//------------------MESH INITIALIZATION----------------
 	//---------------------init QWERTY scene----------------
 	m_pScreenDescriptor = m_pMeshMgr->CreateMesh("screen");
-	m_pModelLoader->LoadFile_OBJ(m_pScreenDescriptor, "../../../model/qwerty/AsusZenbook-Screen-XY.obj");
+	m_pModelLoader->LoadFile_OBJ(m_pScreenDescriptor, "model/AsusZenbook-Screen-XY.obj");
 	//meshList.push_back(pScreenDescriptor);
 	m_pScreenDescriptor->SetPosition(0, 0, 0);
 	m_pScreenDescriptor->SetCullMode(NOISE_CULLMODE_NONE);
@@ -27,7 +33,7 @@ void Qwerty::Scene_MainQwerty3dRendering::Init(Noise3D::IScene * pScene)
 
 	m_pModelLoader = pScene->GetModelLoader();
 	N_SceneLoadingResult res;
-	m_pModelLoader->LoadFile_FBX("../../../model/qwerty/testRoom.fbx", res);
+	m_pModelLoader->LoadFile_FBX("model/testRoom.fbx", res);
 	for (auto & name : res.meshNameList)
 	{
 		IMesh* pMesh = m_pMeshMgr->GetMesh(name);
@@ -68,6 +74,9 @@ void Qwerty::Scene_MainQwerty3dRendering::UpdateAndRender()
 {
 	mFunction_InputProcess();
 	m_pRenderer->ClearBackground();
+
+	m_pCamera->SetPosition({ 0,0,-100.0f });
+	m_pCamera->OptimizeForQwertyPass1(m_pScreenDescriptor);
 
 	//add to render list
 	for (auto& pMesh : mMeshList)m_pRenderer->AddToRenderQueue(pMesh);

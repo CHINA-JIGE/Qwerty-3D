@@ -1,34 +1,27 @@
 
 #include "Qwerty3D-PC.h"
 
-Qwerty::MainApp mainApp;
-Qwerty::NetworkModule networkModule;
 void Mainloop();
+using namespace Qwerty;
 
 //Main Entry
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
 {
-	mainApp.Init3D(hInstance,Mainloop);
+	//init 3D rendering
+	gMainApp.Init3D(hInstance,Mainloop);
 
-	networkModule.Init(
-		"tcp://39.108.118.166:1883",
-		"JigeClient-PC",
-		"FuckingTestMqtt");
-
-	bool isConnected =networkModule.Connect();
+	//connect to remote mobile head tracking app with MQTT
+	gMainApp.InitConnection();
 
 	//enter main loop (until IRoot::MainLoopStatus change to QUIT_LOOP)
-	mainApp.EnterMainLoop();
+	gMainApp.EnterMainLoop();
 
-	//cleanup and exit
-	networkModule.Disconnect();
-
-	mainApp.Cleanup();
+	gMainApp.Cleanup();
 
 	return 0;
 }
 
 void Mainloop()
 {
-	mainApp.UpdateAndRender();
+	gMainApp.UpdateAndRender();
 }

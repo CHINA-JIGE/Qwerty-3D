@@ -26,6 +26,7 @@ namespace Qwerty
 
 	//Listener for message/IO arrival
 	//(CallBack functions)
+	//an instance is owned by Qwerty::NetworkModule
 	class Listener : public virtual mqtt::callback,
 		public virtual mqtt::iaction_listener
 	{
@@ -50,6 +51,8 @@ namespace Qwerty
 
 		std::string mTopicToSubscribe;
 
+		//function pointer to inform that the scene state transfers to another state
+		//void(*m_pOnRemoteMessageArrivedCallbackFunc)(std::string && msg);
 
 		//reconnect if connection is lost
 		void mFunction_Reconnect();

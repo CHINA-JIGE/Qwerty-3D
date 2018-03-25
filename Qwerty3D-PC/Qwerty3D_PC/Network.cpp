@@ -19,6 +19,7 @@ bool Qwerty::NetworkModule::Init(std::string serverAddr, std::string clientId, s
 	mTopic = topic;
 	m_pClient = new mqtt::async_client(serverAddr, clientId);
 	m_pConnectionOpt = new mqtt::connect_options();
+
 	//pass the reference of mqtt::async_client and mqtt::connectionOpt to init listener
 	return mMqttListener.Init(mTopic,m_pClient,m_pConnectionOpt);
 }
@@ -65,16 +66,6 @@ bool Qwerty::NetworkModule::Disconnect()
 
 
 //----------------------Listener for messages---------------------
-
-/*Qwerty::Listener::Listener(std::string topicToSubsribe,mqtt::async_client& cli, mqtt::connect_options& connOpts)
-	: mConnectionRetryCount(0), 
-	m_pRefClient(cli), 
-	m_pRefConnectionOpt(connOpts), 
-	mSubListener("Subscription"),
-	mTopicToSubscribe(topicToSubsribe)
-{
-}*/
-
 Qwerty::Listener::Listener()
 	: mConnectionRetryCount(0),
 	m_pRefClient(nullptr),
@@ -127,6 +118,7 @@ void Qwerty::Listener::on_success(const mqtt::token & tok)
 		<< " using QoS" << cQOS << "\n"
 		<< "\nPress Q<Enter> to quit\n" << std::endl;*/
 
+	//connection success
 	m_pRefClient->subscribe(mTopicToSubscribe, cQOS, nullptr, mSubListener);
 }
 
@@ -139,11 +131,14 @@ void Qwerty::Listener::connection_lost(const std::string & cause)
 	mFunction_Reconnect();
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!MESSAGE ARRIVAL!!!!!!!!!!!!!!!!!!!!!!
 void Qwerty::Listener::message_arrived(mqtt::const_message_ptr msg)
 {
-	std::cout << "Message arrived" << std::endl;
+	/*std::cout << "Message arrived" << std::endl;
 	std::cout << "\ttopic: '" << msg->get_topic() << "'" << std::endl;
-	std::cout << "\tpayload: '" << msg->to_string() << "'\n" << std::endl;
+	std::cout << "\tpayload: '" << msg->to_string() << "'\n" << std::endl;*/
+	std::string payload = msg->to_string();
+	gMainApp.OnMessage(std::move(payload));
 }
 
 void Qwerty::Listener::delivery_complete(mqtt::delivery_token_ptr token)
@@ -160,7 +155,8 @@ void Qwerty::SubActionListener::on_failure(const mqtt::token & tok)
 	std::cout << std::endl;*/
 }
 
-void Qwerty::SubActionListener::on_success(const mqtt::token & tok) {
+void Qwerty::SubActionListener::on_success(const mqtt::token & tok) 
+{
 	/*std::cout << mName << " success";
 	if (tok.get_message_id() != 0)
 	std::cout << " for token: [" << tok.get_message_id() << "]" << std::endl;
@@ -168,4 +164,6 @@ void Qwerty::SubActionListener::on_success(const mqtt::token & tok) {
 	if (top && !top->empty())
 	std::cout << "\ttoken topic: '" << (*top)[0] << "', ..." << std::endl;
 	std::cout << std::endl;*/
+
+
 }
